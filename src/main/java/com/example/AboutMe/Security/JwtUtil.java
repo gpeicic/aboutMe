@@ -17,21 +17,21 @@ public final class JwtUtil {
 
     public static String generateToken(Integer id, String email) {
         return Jwts.builder()
-                .subject(email)
+                .setSubject(email)
                 .claim("id", id)
-                .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 sati
-                .signWith(key, Jwts.SIG.HS256)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 sati
+                .signWith(key)
                 .compact();
     }
 
     public static LoggedInUser extractUser(String token) {
         try {
-            Claims claims = Jwts.parser()
-                    .verifyWith(key)
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(key)
                     .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
+                    .parseClaimsJws(token)
+                    .getBody();
 
             Integer id = claims.get("id", Integer.class);
             return new LoggedInUser(
@@ -40,19 +40,19 @@ public final class JwtUtil {
                     null,
                     Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
             );
-        } catch (Exception e) {
+        } catch (JwtException e) {
             e.printStackTrace();
-            return null; // or throw new CustomException("Invalid token")
+            return null;
         }
     }
 
 
     public static boolean validateToken(String token) {
         try {
-            Jwts.parser()
-                    .verifyWith(key)
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
                     .build()
-                    .parseSignedClaims(token);
+                    .parseClaimsJws(token);
             return true;
         } catch (JwtException e) {
             return false;
