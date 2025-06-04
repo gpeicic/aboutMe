@@ -24,6 +24,9 @@ public interface NarudzbaMapper {
             @Result(property = "datum_narudzbe", column = "datum_narudzbe"),
             @Result(property = "ukupnaCijena", column = "ukupna_cijena")
     })
-    Narudzba getNarudzbaByKorisnik(@Param("korisnik_id") Long korisnikId);
+    Narudzba getNarudzbaByKorisnik(@Param("korisnikId") Long korisnikId);
 
+    @Select("SELECT * FROM Narudzba WHERE id = #{id}")
+    @ResultMap("narudzbaResult")
+    Narudzba getNarudzbaById(@Param("id") Long id);
 }

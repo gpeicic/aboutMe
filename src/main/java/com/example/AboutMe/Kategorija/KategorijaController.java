@@ -16,19 +16,15 @@ public class KategorijaController {
         this.kategorijaService = kategorijaService;
     }
     @GetMapping
-    public List<Kategorija> getAll(){
-            return kategorijaService.getAll();
-
+    public ResponseEntity<List<Kategorija>> getAll() {
+        List<Kategorija> kategorije = kategorijaService.getAll();
+        return ResponseEntity.ok(kategorije);
     }
 
     @GetMapping("/{spolId}")
     public ResponseEntity<List<Kategorija>> getKategorijeBySpolId(@PathVariable Long spolId) {
         List<Kategorija> kategorije = kategorijaService.getKategorijeBySpolId(spolId);
-        if (kategorije.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(kategorije);
-        }
+        return ResponseEntity.ok(kategorije);
     }
 
     @PostMapping

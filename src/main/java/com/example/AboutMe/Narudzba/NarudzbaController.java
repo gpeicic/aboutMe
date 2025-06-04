@@ -20,25 +20,23 @@ public class NarudzbaController {
     @PostMapping
     public ResponseEntity<String> kreirajNarudzbu(@RequestBody Narudzba narudzba) {
         narudzbaService.kreirajNarudzbu(narudzba);
+
         return ResponseEntity.ok("Narudzba uspješno kreirana");
     }
 
-    // Update ukupne cijene narudzbe
+
     @PutMapping("/{narudzbaId}/ukupna-cijena")
     public ResponseEntity<String> azurirajUkupnuCijenu(@PathVariable Long narudzbaId,
                                                        @RequestParam BigDecimal novaCijena) {
         narudzbaService.azurirajUkupnuCijenu(narudzbaId, novaCijena);
+
         return ResponseEntity.ok("Ukupna cijena uspješno ažurirana");
     }
     @GetMapping("/aktivna")
     public ResponseEntity<Narudzba> getAktivnaNarudzba(@AuthenticationPrincipal LoggedInUser user) {
         Long korisnikId = user.getId().longValue();
-
         Narudzba narudzba = narudzbaService.dohvatiAktivnuNarudzbuZaKorisnika(korisnikId);
-        System.out.println(narudzba.getUkupnaCijena());
-        if (narudzba == null) {
-            return ResponseEntity.noContent().build();
-        }
+
         return ResponseEntity.ok(narudzba);
     }
 

@@ -17,47 +17,26 @@ public class PodKategorijaController {
     public ResponseEntity<List<PodKategorija>> getBySpolAndKategorija(
             @PathVariable String spol,
             @PathVariable Long kategorijaId) {
-
         List<PodKategorija> podkategorije = podKategorijaService.getBySpol(spol, kategorijaId);
-
-        if (podkategorije.isEmpty()) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.ok(podkategorije);
-        }
+        return ResponseEntity.ok(podkategorije);
     }
-
 
     @GetMapping
-    public ResponseEntity<List<PodKategorija>> getAll(){
+    public ResponseEntity<List<PodKategorija>> getAll() {
         List<PodKategorija> podKategorije = podKategorijaService.getAll();
-        if(podKategorije.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        else{
-            return ResponseEntity.ok(podKategorije);
-        }
+        return ResponseEntity.ok(podKategorije);
     }
+
     @GetMapping("/kategorija/{kategorijaId}")
-    public ResponseEntity<List<PodKategorija>> getByKategorijaId(@PathVariable Long kategorijaId){
+    public ResponseEntity<List<PodKategorija>> getByKategorijaId(@PathVariable Long kategorijaId) {
         List<PodKategorija> podKategorije = podKategorijaService.getByKategorijaId(kategorijaId);
-        if(podKategorije.isEmpty()){
-            return ResponseEntity.noContent().build();
-        }
-        else{
-            return ResponseEntity.ok(podKategorije);
-        }
+        return ResponseEntity.ok(podKategorije);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PodKategorija> getById(@PathVariable Long id){
+    public ResponseEntity<PodKategorija> getById(@PathVariable Long id) {
         PodKategorija podKategorija = podKategorijaService.getById(id);
-        if(podKategorija.equals(null)){
-            return ResponseEntity.noContent().build();
-        }
-        else{
-            return ResponseEntity.ok(podKategorija);
-        }
+        return ResponseEntity.ok(podKategorija);
     }
 
 }

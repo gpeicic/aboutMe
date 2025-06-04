@@ -24,26 +24,18 @@ public class KorisnikController {
     }
     @GetMapping("/{id}")
     public ResponseEntity<Korisnik> getById(@PathVariable Integer id){
-       Korisnik korisnik = korisnikService.getById(id);
-       if(korisnik.equals(null)){
-           return ResponseEntity.noContent().build();
-       }
-       else{
-           return ResponseEntity.ok(korisnik);
-       }
+        Korisnik korisnik = korisnikService.getById(id);
+        return ResponseEntity.ok(korisnik);
     }
     @PostMapping("/prijava")
     public ResponseEntity<?> loginUser(@RequestBody Korisnik korisnik){
         Korisnik authenticatedUser = korisnikService.authenticateUser(korisnik);
 
-        if(authenticatedUser == null){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Neispravan email ili lozinka");
-        }
-        String token = JwtUtil.generateToken(authenticatedUser.getId(),authenticatedUser.getEmail());
+        String token = JwtUtil.generateToken(authenticatedUser.getId(), authenticatedUser.getEmail());
         Map<String,Object> responseBody = new HashMap<>();
-        responseBody.put("token",token);
-        responseBody.put("email",authenticatedUser.getEmail());
-        responseBody.put("id",authenticatedUser.getId());
+        responseBody.put("token", token);
+        responseBody.put("email", authenticatedUser.getEmail());
+        responseBody.put("id", authenticatedUser.getId());
         return ResponseEntity.ok(responseBody);
     }
     @PostMapping
@@ -55,7 +47,7 @@ public class KorisnikController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Void> deleteKorisnik(@PathVariable Integer id){
         korisnikService.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.ok().build();
     }
 
 }

@@ -4,7 +4,7 @@ public class Kategorija {
     private Long id;
     private String naziv;
     private String spol;
-    public Kategorija(){}
+
     public Kategorija(Long id, String naziv, String spol) {
         this.id = id;
         this.naziv = naziv;

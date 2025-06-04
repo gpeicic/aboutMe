@@ -1,5 +1,7 @@
 package com.example.AboutMe.Korisnik;
 
+import com.example.AboutMe.Exception.KorisnikAuthenticationException;
+import com.example.AboutMe.Exception.KorisnikNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,11 @@ public class KorisnikService {
     }
 
     public Korisnik getById(Integer id){
-        return korisnikMapper.findById(id);
+        Korisnik korisnik = korisnikMapper.findById(id);
+        if(korisnik == null){
+            throw new KorisnikNotFoundException(id);
+        }
+        return korisnik;
     }
 
     public void create(Korisnik korisnik){
@@ -27,13 +33,18 @@ public class KorisnikService {
     }
 
     public Korisnik authenticateUser(Korisnik korisnik){
-        Korisnik foundUser = korisnikMapper.findByEmailAndPassword(korisnik.getEmail());
+        Korisnik foundUser = korisnikMapper.findByEmail(korisnik.getEmail());
 
         if(foundUser == null){
-            return null;
+            throw new KorisnikAuthenticationException();
         }
-        boolean lozinkaTocna = BCrypt.checkpw(korisnik.getPassword(),foundUser.getPassword());
-        return lozinkaTocna ? foundUser : null;
+
+        boolean lozinkaTocna = BCrypt.checkpw(korisnik.getPassword(), foundUser.getPassword());
+        if(!lozinkaTocna){
+            throw new KorisnikAuthenticationException();
+        }
+
+        return foundUser;
     }
 
     public Korisnik findByEmail(String email){
@@ -41,6 +52,10 @@ public class KorisnikService {
     }
 
     public void deleteById(Integer id){
+        Korisnik korisnik = korisnikMapper.findById(id);
+        if(korisnik == null){
+            throw new KorisnikNotFoundException(id);
+        }
         korisnikMapper.deleteById(id);
     }
 }

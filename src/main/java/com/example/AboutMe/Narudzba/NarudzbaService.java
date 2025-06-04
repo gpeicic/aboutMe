@@ -1,5 +1,6 @@
 package com.example.AboutMe.Narudzba;
 
+import com.example.AboutMe.Exception.NarudzbaNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,6 @@ public class NarudzbaService {
 
     @Transactional
     public void kreirajNarudzbu(Narudzba narudzba) {
-        // Postavi ukupnu cijenu na 0 ako nije definirana
         if (narudzba.getUkupnaCijena() == null) {
             narudzba.setUkupnaCijena(BigDecimal.ZERO);
         }
@@ -23,11 +23,20 @@ public class NarudzbaService {
     }
 
     public Narudzba dohvatiAktivnuNarudzbuZaKorisnika(Long korisnikId) {
-        return narudzbaMapper.getNarudzbaByKorisnik(korisnikId);
+        Narudzba narudzba = narudzbaMapper.getNarudzbaByKorisnik(korisnikId);
+        if (narudzba == null) {
+            throw new NarudzbaNotFoundException(korisnikId);
+        }
+        return narudzba;
     }
+
 
     @Transactional
     public void azurirajUkupnuCijenu(Long narudzbaId, BigDecimal novaCijena) {
+        Narudzba narudzba = narudzbaMapper.getNarudzbaById(narudzbaId);
+        if (narudzba == null) {
+            throw new NarudzbaNotFoundException(narudzbaId);
+        }
         narudzbaMapper.updateUkupnaCijena(narudzbaId, novaCijena);
     }
 }

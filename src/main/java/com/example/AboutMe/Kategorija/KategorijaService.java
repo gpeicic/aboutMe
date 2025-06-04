@@ -1,5 +1,6 @@
 package com.example.AboutMe.Kategorija;
 
+import com.example.AboutMe.Exception.KategorijaNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,12 +13,20 @@ public class KategorijaService {
         this.kategorijaMapper = kategorijaMapper;
     }
 
-    public List<Kategorija> getAll(){
-        return kategorijaMapper.getAll();
+    public List<Kategorija> getAll() {
+        List<Kategorija> kategorije = kategorijaMapper.getAll();
+        if (kategorije.isEmpty()) {
+            throw new KategorijaNotFoundException("Nema dostupnih kategorija.");
+        }
+        return kategorije;
     }
 
     public List<Kategorija> getKategorijeBySpolId(Long spolId) {
-        return kategorijaMapper.getById(spolId);
+        List<Kategorija> kategorije = kategorijaMapper.getById(spolId);
+        if (kategorije.isEmpty()) {
+            throw new KategorijaNotFoundException("Kategorije za spolId " + spolId + " nisu pronađene.");
+        }
+        return kategorije;
     }
     public void addKategorija(Kategorija kategorija){
         kategorijaMapper.insert(kategorija);

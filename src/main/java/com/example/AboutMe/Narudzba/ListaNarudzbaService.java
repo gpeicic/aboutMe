@@ -1,5 +1,7 @@
 package com.example.AboutMe.Narudzba;
 
+import com.example.AboutMe.Exception.ProizvodNotFoundException;
+import com.example.AboutMe.Exception.StavkaNotFoundException;
 import com.example.AboutMe.Proizvod.Proizvod;
 import com.example.AboutMe.Proizvod.ProizvodMapper;
 import org.springframework.stereotype.Service;
@@ -21,10 +23,13 @@ public class ListaNarudzbaService {
 
     @Transactional
     public void dodajStavku(ListaNarudzba stavka) {
-        listaNarudzbaMapper.insertListaNarudzbi(stavka);
         Proizvod proizvod = proizvodMapper.findById(stavka.getProizvod_id());
+        if (proizvod == null) {
+            throw new ProizvodNotFoundException("Proivod sa id-om: " + stavka.getProizvod_id() + " nije pronađen.");
+        }
+        listaNarudzbaMapper.insertListaNarudzbi(stavka);
         BigDecimal umnozakCijeneIKolicine = proizvod.getCijena().multiply(BigDecimal.valueOf(stavka.getKolicina()));
-        listaNarudzbaMapper.dodajNaCijenuNarudzbe(stavka.getNarudzba_id(),umnozakCijeneIKolicine);
+        listaNarudzbaMapper.dodajNaCijenuNarudzbe(stavka.getNarudzba_id(), umnozakCijeneIKolicine);
     }
 
     public List<ListaNarudzba> dohvatiStavkeZaNarudzbu(Long narudzbaId) {
@@ -34,24 +39,37 @@ public class ListaNarudzbaService {
     @Transactional
     public void azurirajKolicinu(Long id, int novaKolicina) {
         ListaNarudzba stavka = listaNarudzbaMapper.findById(id);
-        Long staraKolicina = stavka.getKolicina();
-
+        if (stavka == null) {
+            throw new StavkaNotFoundException(id);
+        }
         Proizvod proizvod = proizvodMapper.findById(stavka.getProizvod_id());
+        if (proizvod == null) {
+            throw new ProizvodNotFoundException("Proizvod sa id-om: " + stavka.getProizvod_id() + " nije pronađen.");
+        }
+
+        Long staraKolicina = stavka.getKolicina();
         BigDecimal stariIznos = proizvod.getCijena().multiply(BigDecimal.valueOf(staraKolicina));
         BigDecimal noviIznos = proizvod.getCijena().multiply(BigDecimal.valueOf(novaKolicina));
-        System.out.println("stara cijena: " + stariIznos + " novi iznos " + noviIznos);
         BigDecimal iznos = noviIznos.subtract(stariIznos);
-        System.out.println("razlika " + iznos);
+
         listaNarudzbaMapper.updateKolicina(id, novaKolicina);
         listaNarudzbaMapper.dodajNaCijenuNarudzbe(stavka.getNarudzba_id(), iznos);
     }
 
     @Transactional
     public void obrisiStavku(ListaNarudzba stavka) {
-        listaNarudzbaMapper.deleteById(stavka.getId());
+        ListaNarudzba postojećaStavka = listaNarudzbaMapper.findById(stavka.getId());
+        if (postojećaStavka == null) {
+            throw new StavkaNotFoundException(stavka.getId());
+        }
         Proizvod proizvod = proizvodMapper.findById(stavka.getProizvod_id());
+        if (proizvod == null) {
+            throw new ProizvodNotFoundException("Proizvod sa id-om: " + stavka.getProizvod_id() + " nije pronađen.");
+        }
+
+        listaNarudzbaMapper.deleteById(stavka.getId());
         BigDecimal umnozakCijeneIKolicine = proizvod.getCijena().multiply(BigDecimal.valueOf(stavka.getKolicina()));
-        listaNarudzbaMapper.oduzmiOdCijeneNarudzbe(stavka.getNarudzba_id(),umnozakCijeneIKolicine);
+        listaNarudzbaMapper.oduzmiOdCijeneNarudzbe(stavka.getNarudzba_id(), umnozakCijeneIKolicine);
     }
 
     @Transactional
