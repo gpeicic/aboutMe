@@ -13,7 +13,10 @@ public class Narudzba {
     private LocalDateTime datum_narudzbe;
     private Integer status;
 
-    public Narudzba(Integer id, Integer korisnik_id, LocalDateTime datum_narudzbe,BigDecimal ukupnaCijena, Integer status) {
+    public Narudzba() {
+    }
+
+    public Narudzba(Integer id, Integer korisnik_id, LocalDateTime datum_narudzbe, BigDecimal ukupnaCijena, Integer status) {
         this.id = id;
         this.korisnik_id = korisnik_id;
         this.ukupnaCijena = ukupnaCijena;

@@ -11,6 +11,9 @@ public class Kategorija {
         this.spol = spol;
     }
 
+    public Kategorija() {
+    }
+
     public Long getId() {
         return id;
     }

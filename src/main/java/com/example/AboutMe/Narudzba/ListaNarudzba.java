@@ -6,6 +6,8 @@ public class ListaNarudzba {
     private Long proizvod_id;
     private Long kolicina;
 
+
+
     public ListaNarudzba(Long id, Long narudzba_id, Long proizvod_id, Long kolicina) {
         this.id = id;
         this.narudzba_id = narudzba_id;

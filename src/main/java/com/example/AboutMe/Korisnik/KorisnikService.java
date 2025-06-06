@@ -39,7 +39,8 @@ public class KorisnikService {
             throw new KorisnikAuthenticationException();
         }
 
-        boolean lozinkaTocna = BCrypt.checkpw(korisnik.getPassword(), foundUser.getPassword());
+        boolean lozinkaTocna = passwordEncoder.matches(korisnik.getPassword(), foundUser.getPassword());
+
         if(!lozinkaTocna){
             throw new KorisnikAuthenticationException();
         }

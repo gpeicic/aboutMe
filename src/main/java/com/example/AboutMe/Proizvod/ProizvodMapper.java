@@ -118,8 +118,8 @@ public interface ProizvodMapper {
     @ResultMap("ProizvodResultMap")
     List<Proizvod> findByPodkategorijaNazivAndSpol(String podkategorijaNaziv, String spol);
     @Insert("""
-        INSERT INTO proizvod (ime, cijena, opis, marka, podkategorija_id, kategorija_id)
-        VALUES (#{ime}, #{cijena}, #{opis}, #{marka}, #{podKategorija.id}, #{kategorija.id})
+        INSERT INTO proizvod (ime, cijena, opis, marka, podkategorija_id)
+        VALUES (#{ime}, #{cijena}, #{opis}, #{marka}, #{podkategorija.id})
     """)
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(Proizvod proizvod);
@@ -130,8 +130,7 @@ public interface ProizvodMapper {
             cijena = #{cijena},
             opis = #{opis},
             marka = #{marka},
-            podkategorija_id = #{podKategorija.id},
-            kategorija_id = #{kategorija.id}
+            podkategorija_id = #{podkategorija.id}
         WHERE id = #{id}
     """)
     void update(Proizvod proizvod);

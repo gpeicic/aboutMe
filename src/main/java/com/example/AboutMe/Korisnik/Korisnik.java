@@ -12,6 +12,9 @@ public class Korisnik {
         this.password = password;
     }
 
+    public Korisnik() {
+    }
+
     public Integer getId() {
         return id;
     }
