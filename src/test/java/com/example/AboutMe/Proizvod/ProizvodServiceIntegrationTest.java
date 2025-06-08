@@ -15,14 +15,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ProizvodServiceIntegrationTest {
 
     @Autowired
     private ProizvodService proizvodService;
 
-    @Autowired
-    private ProizvodMapper proizvodMapper;
 
     private Proizvod testProizvod() {
         Proizvod proizvod = new Proizvod();

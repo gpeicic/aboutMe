@@ -7,12 +7,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = AboutMeApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Transactional
 public class KategorijaControllerIntegrationTest {
 
     @LocalServerPort

@@ -46,7 +46,7 @@ public class ListaNarudzbaController {
         return ResponseEntity.ok("Stavka uspješno obrisana");
     }
 
-    // Obriši sve stavke za određenu narudzbu (isprazni kosaricu)
+
     @DeleteMapping("/narudzba/{narudzbaId}")
     public ResponseEntity<String> obrisiSveStavke(@PathVariable Long narudzbaId, @AuthenticationPrincipal LoggedInUser user) {
         Long korisnikId = user.getId().longValue();

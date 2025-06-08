@@ -45,7 +45,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/korisnik", "/korisnik/prijava").permitAll()
                         .requestMatchers(HttpMethod.GET, "/", "/oauth2/**","/kategorija/**","/proizvodi/**","/podkategorija/**").permitAll()
                         .requestMatchers("/narudzba/**", "/listaNarudzba/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/korisnik","/narudzba/**","/listaNarudzba/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/korisnik","/narudzba/**","/listaNarudzba/**","/wishlist").authenticated()
+                        .requestMatchers(HttpMethod.POST,"/wishlist").authenticated()
+                        .requestMatchers(HttpMethod.DELETE,"/wishlist").authenticated()
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2

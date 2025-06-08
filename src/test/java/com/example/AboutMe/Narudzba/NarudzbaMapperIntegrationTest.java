@@ -1,7 +1,9 @@
 package com.example.AboutMe.Narudzba;
 
 import org.junit.jupiter.api.Test;
+import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +12,8 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest
+@MybatisTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 public class NarudzbaMapperIntegrationTest {
 
@@ -31,7 +34,7 @@ public class NarudzbaMapperIntegrationTest {
 
         narudzbaMapper.updateUkupnaCijena(narudzba.getId().longValue(), BigDecimal.valueOf(250.00));
 
-        // Assert
+
         Narudzba fetched = narudzbaMapper.getNarudzbaById(narudzba.getId().longValue());
 
         assertThat(fetched).isNotNull();
@@ -47,15 +50,15 @@ public class NarudzbaMapperIntegrationTest {
         narudzba.setDatum_narudzbe(LocalDateTime.now());
         narudzba.setUkupnaCijena(BigDecimal.valueOf(10.00));
 
-        // Insert
+
         narudzbaMapper.insertNarudzba(narudzba);
 
-        // Act
+
         Narudzba fetched = narudzbaMapper.getNarudzbaByKorisnik(12L);
 
-        // Assert
+
         assertThat(fetched).isNotNull();
         assertThat(fetched.getKorisnik_id()).isEqualTo(12);
-        assertThat(fetched.getUkupnaCijena()).isEqualByComparingTo("89.70");
+        assertThat(fetched.getUkupnaCijena()).isEqualByComparingTo("10.00");
     }
 }
