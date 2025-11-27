@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import java.math.BigDecimal;
 
-import com.example.AboutMe.Exception.NarudzbaNotFoundException;
+import com.example.AboutMe.Narudzba.exception.NarudzbaNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

@@ -1,9 +1,7 @@
 package com.example.AboutMe.Korisnik;
 
-import com.example.AboutMe.Exception.KorisnikAuthenticationException;
-import com.example.AboutMe.Exception.KorisnikNotFoundException;
-import com.example.AboutMe.Wishlist.WishlistMapper;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import com.example.AboutMe.Korisnik.exception.KorisnikAuthenticationException;
+import com.example.AboutMe.Korisnik.exception.KorisnikNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +10,12 @@ public class KorisnikService {
 
     private final KorisnikMapper korisnikMapper;
     private final PasswordEncoder passwordEncoder;
-    private final WishlistMapper wishlistMapper;
 
-    public KorisnikService(KorisnikMapper korisnikMapper, PasswordEncoder passwordEncoder, WishlistMapper wishlistMapper) {
+
+    public KorisnikService(KorisnikMapper korisnikMapper, PasswordEncoder passwordEncoder) {
         this.korisnikMapper = korisnikMapper;
         this.passwordEncoder = passwordEncoder;
-        this.wishlistMapper = wishlistMapper;
+
     }
 
     public Korisnik getById(Integer id){

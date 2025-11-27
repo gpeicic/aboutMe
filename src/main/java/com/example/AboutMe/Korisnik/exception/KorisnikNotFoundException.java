@@ -1,4 +1,4 @@
-package com.example.AboutMe.Exception;
+package com.example.AboutMe.Korisnik.exception;
 
 public class KorisnikNotFoundException extends RuntimeException {
     public KorisnikNotFoundException(Integer id) {

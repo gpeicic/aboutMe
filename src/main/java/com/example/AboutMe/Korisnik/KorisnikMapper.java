@@ -9,9 +9,6 @@ public interface KorisnikMapper {
     Korisnik findById(@Param("id") Integer id);
 
     @Select("SELECT * FROM korisnik WHERE email = #{email}")
-    Korisnik findByEmailAndPassword(@Param("email") String email);
-
-    @Select("SELECT * FROM korisnik WHERE email = #{email}")
     Korisnik findByEmail(@Param("email") String email);
 
     @Insert("INSERT INTO korisnik (email, password) VALUES (#{email}, #{password})")

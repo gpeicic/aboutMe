@@ -1,6 +1,6 @@
 package com.example.AboutMe.PodKategorija;
 
-import com.example.AboutMe.Exception.PodKategorijaNotFoundException;
+import com.example.AboutMe.PodKategorija.exception.PodKategorijaNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

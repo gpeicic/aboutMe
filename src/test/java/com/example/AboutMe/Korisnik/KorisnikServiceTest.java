@@ -1,7 +1,7 @@
 package com.example.AboutMe.Korisnik;
 
-import com.example.AboutMe.Exception.KorisnikAuthenticationException;
-import com.example.AboutMe.Exception.KorisnikNotFoundException;
+import com.example.AboutMe.Korisnik.exception.KorisnikAuthenticationException;
+import com.example.AboutMe.Korisnik.exception.KorisnikNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

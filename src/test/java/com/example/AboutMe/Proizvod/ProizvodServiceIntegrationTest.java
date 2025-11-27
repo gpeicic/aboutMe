@@ -1,6 +1,6 @@
 package com.example.AboutMe.Proizvod;
 
-import com.example.AboutMe.Exception.ProizvodNotFoundException;
+import com.example.AboutMe.Proizvod.exception.ProizvodNotFoundException;
 import com.example.AboutMe.PodKategorija.PodKategorija;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

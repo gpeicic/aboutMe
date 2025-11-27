@@ -32,4 +32,5 @@ public class KategorijaController {
         kategorijaService.addKategorija(kategorija);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    
 }

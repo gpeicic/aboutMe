@@ -1,6 +1,6 @@
 package com.example.AboutMe.Proizvod;
 
-import com.example.AboutMe.Exception.ProizvodNotFoundException;
+import com.example.AboutMe.Proizvod.exception.ProizvodNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

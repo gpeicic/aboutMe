@@ -1,7 +1,7 @@
 package com.example.AboutMe.Narudzba;
 
-import com.example.AboutMe.Exception.ProizvodNotFoundException;
-import com.example.AboutMe.Exception.StavkaNotFoundException;
+import com.example.AboutMe.Proizvod.exception.ProizvodNotFoundException;
+import com.example.AboutMe.Narudzba.exception.StavkaNotFoundException;
 import com.example.AboutMe.Proizvod.Proizvod;
 import com.example.AboutMe.Proizvod.ProizvodMapper;
 import org.springframework.stereotype.Service;

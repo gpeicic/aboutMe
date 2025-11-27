@@ -1,6 +1,6 @@
 package com.example.AboutMe.Kategorija;
 
-import com.example.AboutMe.Exception.KategorijaNotFoundException;
+import com.example.AboutMe.Kategorija.exception.KategorijaNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

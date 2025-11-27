@@ -1,4 +1,4 @@
-package com.example.AboutMe.Exception;
+package com.example.AboutMe.Proizvod.exception;
 
 public class ProizvodNotFoundException extends RuntimeException {
     public ProizvodNotFoundException(String message) {

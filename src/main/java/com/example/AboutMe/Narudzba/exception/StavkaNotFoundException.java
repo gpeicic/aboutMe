@@ -1,4 +1,4 @@
-package com.example.AboutMe.Exception;
+package com.example.AboutMe.Narudzba.exception;
 
 public class StavkaNotFoundException  extends RuntimeException{
     public StavkaNotFoundException(Long id) {

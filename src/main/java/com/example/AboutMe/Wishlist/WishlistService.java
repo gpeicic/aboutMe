@@ -1,6 +1,6 @@
 package com.example.AboutMe.Wishlist;
 
-import com.example.AboutMe.Exception.WishlistNotFoundException;
+import com.example.AboutMe.Wishlist.exception.WishlistNotFoundException;
 import com.example.AboutMe.Proizvod.Proizvod;
 import org.springframework.stereotype.Service;
 

@@ -1,11 +1,11 @@
 package com.example.AboutMe.Narudzba;
 
-import com.example.AboutMe.Exception.NarudzbaNotFoundException;
+import com.example.AboutMe.Narudzba.exception.NarudzbaNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 @Service
 public class NarudzbaService {
     private final NarudzbaMapper narudzbaMapper;

@@ -1,6 +1,6 @@
 package com.example.AboutMe.Kategorija;
 
-import com.example.AboutMe.Exception.KategorijaNotFoundException;
+import com.example.AboutMe.Kategorija.exception.KategorijaNotFoundException;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

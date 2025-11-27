@@ -1,6 +1,6 @@
 package com.example.AboutMe.Kategorija;
 
-import com.example.AboutMe.Exception.KategorijaNotFoundException;
+import com.example.AboutMe.Kategorija.exception.KategorijaNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

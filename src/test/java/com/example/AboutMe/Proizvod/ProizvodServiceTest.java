@@ -3,7 +3,7 @@ package com.example.AboutMe.Proizvod;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.example.AboutMe.Exception.ProizvodNotFoundException;
+import com.example.AboutMe.Proizvod.exception.ProizvodNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;

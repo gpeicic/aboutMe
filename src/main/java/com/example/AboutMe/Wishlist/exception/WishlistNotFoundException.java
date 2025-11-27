@@ -1,4 +1,4 @@
-package com.example.AboutMe.Exception;
+package com.example.AboutMe.Wishlist.exception;
 
 public class WishlistNotFoundException extends RuntimeException {
 

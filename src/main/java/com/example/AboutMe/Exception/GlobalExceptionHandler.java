@@ -1,5 +1,13 @@
 package com.example.AboutMe.Exception;
 
+import com.example.AboutMe.Kategorija.exception.KategorijaNotFoundException;
+import com.example.AboutMe.Korisnik.exception.KorisnikAuthenticationException;
+import com.example.AboutMe.Korisnik.exception.KorisnikNotFoundException;
+import com.example.AboutMe.Narudzba.exception.NarudzbaNotFoundException;
+import com.example.AboutMe.Narudzba.exception.StavkaNotFoundException;
+import com.example.AboutMe.PodKategorija.exception.PodKategorijaNotFoundException;
+import com.example.AboutMe.Proizvod.exception.ProizvodNotFoundException;
+import com.example.AboutMe.Wishlist.exception.WishlistNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

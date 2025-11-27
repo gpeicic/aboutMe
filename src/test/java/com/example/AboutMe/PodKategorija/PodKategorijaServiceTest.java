@@ -3,7 +3,7 @@ package com.example.AboutMe.PodKategorija;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import com.example.AboutMe.Exception.PodKategorijaNotFoundException;
+import com.example.AboutMe.PodKategorija.exception.PodKategorijaNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
