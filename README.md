@@ -1,5 +1,5 @@
 ## AboutMe
-Vježba projekt — klon AboutYou platforme za online kupovinu odjeće i modnih dodataka.
+Vježba projekt. Klon AboutYou platforme za online kupovinu odjeće i modnih dodataka.
 
 ## Što radi
 
